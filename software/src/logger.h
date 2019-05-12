@@ -18,13 +18,13 @@ enum LogLevel {
 
 const char * LogPrefixes[] = { "DEBUG", "WARNING", "INFO", "ERROR" };
 
-void logMsg(const char * message, LogLevel logLevel) {
+void logMsg(const char *message, const char *source, LogLevel logLevel) {
     
     // If the message priority is less than the current priority, discard the message
     if(CURRENT_LOG_LEVEL > logLevel)
         return;
     
-    printf("[%s] %s\n", LogPrefixes[logLevel], message);
+    printf("[%s][%s] %s\n", LogPrefixes[logLevel], source, message);
 }
 
 #endif

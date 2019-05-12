@@ -4,13 +4,15 @@
 #include "camera.h"
 
 Camera *camera;
+Network *network;
 
 /**
  * Main entry point for the program
  */
 int main(void) {
-    logMsg("Program starting up...", INFO);
+    logMsg("Program starting up...", "Main", INFO);
     camera = new Camera();
+    network = new Network("130.195.6.196", 1024);
 
     return 0;
 }

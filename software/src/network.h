@@ -12,7 +12,7 @@ public:
     void OpenGate();
 
 private:
-    char * IPAddr;
+    const char * IPAddr;
     int portNumber;
 };
 
