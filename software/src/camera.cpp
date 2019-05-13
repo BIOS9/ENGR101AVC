@@ -50,5 +50,17 @@ int Camera::GetLineError() {
     int brightThreshold = minBright + (maxBright - minBright) / 2;
     logMsg("Brightness threshold set at: %d", "Camera", DEBUG, brightThreshold);
 
+    int lineError = 0;
 
+    for(int i = 0; i < IMAGE_WIDTH; ++i) {
+        int pixel = get_pixel(middleY, i, 3);
+        
+        // Add or subtract error based on brightness
+        if(pixel > brightThreshold)
+            ++lineError;
+        else if(pixel < brightThreshold)
+            --lineError;
+    }
+
+    return lineError;
 }
