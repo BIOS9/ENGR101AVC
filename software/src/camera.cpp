@@ -55,12 +55,15 @@ int Camera::GetLineError() {
     for(int i = 0; i < IMAGE_WIDTH; ++i) {
         int pixel = get_pixel(middleY, i, 3);
         
-        // Add or subtract error based on brightness
-        if(pixel > brightThreshold)
-            ++lineError;
-        else if(pixel < brightThreshold)
-            --lineError;
+        int relativeCentre = i - IMAGE_WIDTH/2; // Gets the relative centre position of the image so that middle is 0
+
+        // Threshold is used so a pixel can be treated as either black or white
+        // This means we can add or subtract error for black pixels only
+        // The amount of error to add or subtract is calculated with the distance from the image centre (relativeCentre)
+        if(pixel < brightThreshold)
+            lineError += relativeCentre;
     }
 
+    logMsg("Error value calculated as: %d", "Camera", DEBUG, lineError);
     return lineError;
 }
