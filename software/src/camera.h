@@ -8,18 +8,16 @@
 #ifndef CAMERA_H // Header guard
 #define CAMERA_H 
 
-#include "E101.h"
-#include <iostream>
-
-using namespace std;
+#define IMAGE_WIDTH 320
+#define IMAGE_HEIGHT 240
 
 class Camera {
 public:
     Camera(); // Constructor
 
-    double getLinePosition(); // Get position of line from camera. -1 to 1
+    int GetLineError(); // Get line error. Negative error means line is left of centre, positive means right of centre
 
-    bool isLineVisible();
+    bool IsLineVisible();
 
 private:
     
