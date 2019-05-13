@@ -5,7 +5,7 @@
  * Constructor for camera class
  */
 Camera::Camera() {
-    logMsg("Camera starting up...", "Camera", DEBUG);
+    logMsg("Camera starting up...", "Camera", INFO);
 
     int err = init(); // Initialise the E101 library
     if(err != 0) {

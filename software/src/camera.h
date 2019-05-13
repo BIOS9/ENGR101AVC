@@ -14,7 +14,7 @@
 class Camera {
 public:
     Camera(); // Constructor
-
+    ~Camera(); // Destructor
     int GetLineError(); // Get line error. Negative error means line is left of centre, positive means right of centre
 
     bool IsLineVisible();
