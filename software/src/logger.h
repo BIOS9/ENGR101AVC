@@ -8,23 +8,47 @@
 #define CURRENT_LOG_LEVEL DEBUG // CHANGE THIS TO CHANGE LOGGING LEVEL
 
 #include <stdio.h>
+#include <stdarg.h>
+
+#define CURRENT_LOG_LEVEL DEBUG // CHANGE THIS TO CHANGE LOGGING LEVEL
 
 enum LogLevel {
-    DEBUG = 0,
-    WARNING = 1,
-    INFO = 2,
-    ERROR = 3
+	DEBUG = 0,
+	WARNING = 1,
+	INFO = 2,
+	ERROR = 3
 };
 
 const char * LogPrefixes[] = { "DEBUG", "WARNING", "INFO", "ERROR" };
 
-void logMsg(const char *message, const char *source, LogLevel logLevel) {
-    
-    // If the message priority is less than the current priority, discard the message
-    if(CURRENT_LOG_LEVEL > logLevel)
-        return;
-    
-    printf("[%s][%s] %s\n", LogPrefixes[logLevel], source, message);
+/**
+ * Logs messages and errors to console.
+ * 
+ * Supports variable argument formatting
+ */
+void logMsg(const char *format, const char *source, LogLevel logLevel, ...) {
+
+	// If the message priority is less than the current priority, discard the message
+	if (CURRENT_LOG_LEVEL > logLevel)
+		return;
+
+	FILE *stream = (logLevel == ERROR) ? stderr : stdout; // If it's an error, print to stderr
+
+	printf("[%s][%s] ", LogPrefixes[logLevel], source); // Print the log level and log source
+
+	va_list argptr;
+
+	va_start(argptr, format); // Get the argument list pointer
+
+	// Advance the argument pointer to skip log source and log level
+	va_arg(argptr, const char *);
+	va_arg(argptr, LogLevel);
+
+	
+	vfprintf(stream, format, argptr); // Pass arguments to vprintf to print messages
+	va_end(argptr);
+
+	printf("\n"); // End the line
 }
 
 #endif
