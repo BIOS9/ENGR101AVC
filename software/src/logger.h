@@ -12,7 +12,7 @@
 
 #define CURRENT_LOG_LEVEL DEBUG // CHANGE THIS TO CHANGE LOGGING LEVEL
 
-enum LogLevel {
+enum LogLevel : int {
 	DEBUG = 0,
 	WARNING = 1,
 	INFO = 2,
@@ -26,7 +26,7 @@ const char * LogPrefixes[] = { "DEBUG", "WARNING", "INFO", "ERROR" };
  * 
  * Supports variable argument formatting
  */
-void logMsg(const char *format, const char *source, LogLevel logLevel, ...) {
+void logMsg(const char *format, const char *source, int logLevel, ...) {
 
 	// If the message priority is less than the current priority, discard the message
 	if (CURRENT_LOG_LEVEL > logLevel)
@@ -42,7 +42,7 @@ void logMsg(const char *format, const char *source, LogLevel logLevel, ...) {
 
 	// Advance the argument pointer to skip log source and log level
 	va_arg(argptr, const char *);
-	va_arg(argptr, LogLevel);
+	va_arg(argptr, int);
 
 	
 	vfprintf(stream, format, argptr); // Pass arguments to vprintf to print messages

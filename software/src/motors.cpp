@@ -1,5 +1,6 @@
 #include "logger.h"
 #include "motors.h"
+#include "E101.h"
 
 Motors::Motors() {
     logMsg("Motors starting up...", "Motors", INFO);

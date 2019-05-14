@@ -1,5 +1,7 @@
+#include <stdlib.h> 
 #include "camera.h" 
 #include "logger.h"
+#include "E101.h"
 
 /**
  * Constructor for camera class

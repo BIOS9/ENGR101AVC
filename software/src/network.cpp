@@ -1,7 +1,8 @@
 #include "network.h"
+#include "logger.h"
 #include "E101.h"
 
-Network::Network(const char *ip, int port) {
+Network::Network(char *ip, int port) {
     logMsg("Network starting up...", "Network", DEBUG);
     IPAddr = ip;
     portNumber = port;
