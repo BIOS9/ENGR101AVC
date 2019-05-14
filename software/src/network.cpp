@@ -16,7 +16,7 @@ void Network::OpenGate() {
     char password[24];
 
     logMsg("Sending please...", "Network", DEBUG);
-    send_to_server("Please");
+    send_to_server((char*)"Please");
 
     logMsg("Receiving password...", "Network", DEBUG);
     receive_from_server(password); 
