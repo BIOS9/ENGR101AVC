@@ -5,7 +5,6 @@
 #include "network.h"
 
 Camera *camera;
-Network *network;
 
 /**
  * Main entry point for the program
@@ -13,7 +12,6 @@ Network *network;
 int main(void) {
     logMsg("Program starting up...", "Main", INFO);
     camera = new Camera();
-    network = new Network((char *)"130.195.6.196", 1024);
 
     return 0;
 }
