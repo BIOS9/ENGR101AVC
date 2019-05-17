@@ -23,30 +23,10 @@ int main(void) {
     camera = new Camera();
     motors = new Motors();
 
-    for(int i = 0; i < 3; ++i) {
-        motors->SetMotorSpeed(LEFT, 100);
-        motors->SetMotorSpeed(RIGHT, 100);
-        motors->UpdateMotors();
-        sleep1(2000);
-
-        motors->SetMotorSpeed(LEFT, 0);
-        motors->SetMotorSpeed(RIGHT, 0);
-        motors->UpdateMotors();
-        sleep1(2000);
-
-        motors->SetMotorSpeed(LEFT, -100);
-        motors->SetMotorSpeed(RIGHT, -100);
-        motors->UpdateMotors();
-        sleep1(2000);
-    }
-
-    motors->SetMotorSpeed(LEFT, 0);
-    motors->SetMotorSpeed(RIGHT, 0);
-    motors->UpdateMotors();
-    sleep1(2000);
     for(int i = -100; i <= 100; ++i)
     {
         motors->SetMotorSpeed(LEFT, i);
+        motors->SetMotorSpeed(RIGHT, -i);
         motors->UpdateMotors();
         sleep1(50);
     }

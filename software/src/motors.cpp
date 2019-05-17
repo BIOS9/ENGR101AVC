@@ -40,7 +40,7 @@ int Motors::interpolateMotorSpeed(int value) {
     if(value > 0)
         return (int)lerp(STOP_MOTOR_SPEED, MAX_MOTOR_SPEED, float(value) / 100.0);
     else if(value < 0)
-        return (int)lerp(MIN_MOTOR_SPEED, STOP_MOTOR_SPEED, float(100 - value) / 100.0);
+        return (int)lerp(STOP_MOTOR_SPEED, MIN_MOTOR_SPEED, float(-value) / 100.0);
     else
         return STOP_MOTOR_SPEED;
 }
