@@ -21,7 +21,16 @@ float PID::getProportional(float error) {
 }
 
 float PID::getIntegral(float error) {
-    return 0;
+    float value = integralGain * (totalIntegral += error);
+
+    // Apply clamps
+    if(totalIntegral > integralClampUpper)
+        totalIntegral = integralClampUpper;
+    
+    if(totalIntegral < integralClampLower)
+        totalIntegral = integralClampLower;
+
+    return value;
 }
 
 float PID::getDerivative(float error) {
