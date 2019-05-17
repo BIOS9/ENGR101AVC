@@ -2,6 +2,10 @@
 #include "motors.h"
 #include "E101.h"
 
+const int MAX_MOTOR_SPEED = 65;
+const int STOP_MOTOR_SPEED = 48;
+const int MIN_MOTOR_SPEED = 30;
+
 Motors::Motors() {
     logMsg("Motors starting up...", "Motors", INFO);
 }
@@ -27,13 +31,18 @@ void Motors::SetMotorSpeed(Motor motor, int speed) {
     }
 }
 
+// Got this function off of stackoverflow
+float Motors::lerp(float a, float b, float fraction) {
+    return (a * (1.0 - fraction)) + (b * f);
+}
+
 int Motors::interpolateMotorSpeed(int value) {
     if(value > 0)
-        return 65;
+        return (int)lerp(STOP_MOTOR_SPEED, MAX_MOTOR_SPEED, float(value) / 100f);
     else if(value < 0)
-        return 30;
+        return (int)lerp(MIN_MOTOR_SPEED, STOP_MOTOR_SPEED, float(100 - value) / 100f);
     else
-        return 48;
+        return STOP_MOTOR_SPEED;
 }
 
 void Motors::UpdateMotors() {

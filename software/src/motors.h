@@ -16,7 +16,7 @@ public:
 private:
     int leftMotorValue;
     int rightMotorValue;
-
+    static float lerp(float a, float b, float fraction); // Linear interpolation function
     static int interpolateMotorSpeed(int speed); // Corrects weird motor speed values
 };
 
