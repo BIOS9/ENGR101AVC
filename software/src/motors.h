@@ -10,7 +10,9 @@ class Motors {
 public:
     Motors();
     ~Motors();
-    void SetMotorSpeed(Motor motor, int speed); // Sets speed of either motor (Doesnt actually change speed, update must be called)
+    void SetMotorSpeed(Motor motor, int speed); // Sets speed of either motor -100 to 100, 0 is stop (Doesnt actually change speed, update must be called)
+    void StopAll(); // Stops all motors
+    void Stop(Motor motor); // Stops a specific motor
     void UpdateMotors(); // Actually updates speed of motors after the values have been set
 
 private:

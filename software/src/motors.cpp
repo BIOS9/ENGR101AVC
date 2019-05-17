@@ -5,6 +5,8 @@
 const int MAX_MOTOR_SPEED = 65;
 const int STOP_MOTOR_SPEED = 48;
 const int MIN_MOTOR_SPEED = 30;
+const unsigned char LEFT_MOTOR_PORT = 1; // Physical connection number to the motor for left
+const unsigned char RIGHT_MOTOR_PORT = 5; // Physical connection number to the motor for right
 
 Motors::Motors() {
     logMsg("Motors starting up...", "Motors", INFO);
@@ -31,6 +33,24 @@ void Motors::SetMotorSpeed(Motor motor, int speed) {
     }
 }
 
+void Motors::UpdateMotors() {
+    logMsg("Updating motors...", "Motors", DEBUG);
+    set_motors(LEFT_MOTOR_PORT, leftMotorValue);
+    set_motors(RIGHT_MOTOR_PORT, rightMotorValue);
+    hardware_exchange();
+}
+
+void Motors::StopAll() {
+    SetMotorSpeed(LEFT, 0);
+    SetMotorSpeed(RIGHT, 0);
+    UpdateMotors();
+}
+
+void Motors::Stop(Motor motor) {
+    SetMotorSpeed(motor, 0);
+    UpdateMotors();
+}
+
 // Got this function off of stackoverflow
 float Motors::lerp(float a, float b, float fraction) {
     return (a * (1.0 - fraction)) + (b * fraction);
@@ -43,11 +63,4 @@ int Motors::interpolateMotorSpeed(int value) {
         return (int)lerp(STOP_MOTOR_SPEED, MIN_MOTOR_SPEED, float(-value) / 100.0);
     else
         return STOP_MOTOR_SPEED;
-}
-
-void Motors::UpdateMotors() {
-    logMsg("Updating motors...", "Motors", DEBUG);
-    set_motors(1, leftMotorValue);
-    set_motors(5, rightMotorValue);
-    hardware_exchange();
 }

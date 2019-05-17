@@ -30,9 +30,13 @@ int main(void) {
         motors->UpdateMotors();
         sleep1(50);
     }
-    motors->SetMotorSpeed(LEFT, 0);
-    motors->SetMotorSpeed(RIGHT, 0);
-    motors->UpdateMotors();
+    motors->StopAll();
+    motors->SetMotorSpeed(RIGHT, 100);
+    motors->SetMotorSpeed(LEFT, 100);
+    sleep1(1000);
+    motors->Stop(RIGHT);
+    sleep1(1000);
+    motors->Stop(LEFT);
 
     stoph();
     return 0;
