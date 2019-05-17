@@ -1,6 +1,7 @@
 #ifndef PID_H // Header guard
 #define PID_H 
 
+
 // PID gain constants for stage 2 (curvy line)
 #define STAGE2_KP 1 // Proportional gain
 #define STAGE2_KI 1 // Integral gain
@@ -20,11 +21,14 @@ private:
 
     float totalIntegral;
 
+    float lastDerivativeError;
+    clock_t lastDerivativeClock;
+
     // Clamps to prevent integral wind-up
     const float integralClampUpper = 90;
     const float integralClampLower = -90;
 
-    float getProportional(float error);
+    float getProportion(float error);
     float getIntegral(float error);
     float getDerivative(float error);
 };
