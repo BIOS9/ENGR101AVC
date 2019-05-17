@@ -33,6 +33,7 @@ int main(void) {
     motors->StopAll();
     motors->SetMotorSpeed(RIGHT, 100);
     motors->SetMotorSpeed(LEFT, 100);
+    motors->UpdateMotors();
     sleep1(1000);
     motors->Stop(RIGHT);
     sleep1(1000);
