@@ -33,7 +33,7 @@ int Motors::interpolateMotorSpeed(int value) {
 
 void Motors::UpdateMotors() {
     logMsg("Updating motors...", "Motors", DEBUG);
-    set_motors(0, 0x88);
-    set_motors(1, 0x88);
+    set_motors(1, 58);
+    set_motors(2, 45);
     hardware_exchange();
 }
