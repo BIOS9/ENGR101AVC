@@ -9,12 +9,6 @@
 Camera::Camera() {
     logMsg("Camera starting up...", "Camera", INFO);
 
-    // int err = init(); // Initialise the E101 library
-    // if(err != 0) {
-    //     logMsg("Failed to initialise camera!", "Camera", ERROR);
-    //     exit(err); // An error occured, exit the program
-    // }
-
     logMsg("Camera started.", "Camera", DEBUG);
 }
 
