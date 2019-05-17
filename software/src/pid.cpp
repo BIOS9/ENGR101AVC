@@ -39,7 +39,7 @@ float PID::getIntegral(float error) {
         totalIntegral = integralClampLower;
     }
 
-    return value;
+    return integralGain * value;
 }
 
 float PID::getDerivative(float error) {    
@@ -65,5 +65,5 @@ float PID::getDerivative(float error) {
         return 0;
     }
 
-    return static_cast<float>(errorDiff / timeDiff);
+    return derivativeGain * static_cast<float>(errorDiff / timeDiff);
 }
