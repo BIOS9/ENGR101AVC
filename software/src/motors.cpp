@@ -7,7 +7,7 @@ Motors::Motors() {
 }
 
 Motors::~Motors() {
-    stop(0); // Stop motors
+    //stop(0); // Stop motors
 }
 
 void Motors::SetMotorSpeed(Motor motor, int speed) {
@@ -25,4 +25,8 @@ void Motors::SetMotorSpeed(Motor motor, int speed) {
         leftMotorValue = interpolateMotorSpeed(-speed);
         logMsg("Left motor speed set to: %d (Actual value: %d)", "Motors", DEBUG, speed, leftMotorValue);
     }
+}
+
+int Motors::interpolateMotorSpeed(int value) {
+    return 0;
 }
