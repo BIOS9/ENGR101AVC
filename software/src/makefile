@@ -1,5 +1,5 @@
 E101AVC: main.o camera.o logger.o
-	g++ -Wall -o E101AVC.o main.o camera.o logger.o
+	g++ -Wall -o E101AVC main.o camera.o logger.o
 
 main.o: main.cpp
 	g++ -Wall -c main.cpp
