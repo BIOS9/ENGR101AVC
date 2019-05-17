@@ -46,7 +46,7 @@ int main(void) {
     sleep1(2000);
     for(int i = -100; i <= 100; ++i)
     {
-        motors->SetMotorSpeed(LEFT, 0);
+        motors->SetMotorSpeed(LEFT, i);
         motors->UpdateMotors();
         sleep1(50);
     }
