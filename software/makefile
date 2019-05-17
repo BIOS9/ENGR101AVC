@@ -1,21 +1,18 @@
-BD=build/
-SD=src/
+OUT= E101AVC.a
+ODIR= build
+SDIR= src
+CC= g++
+CFLAGS= -Wall
+_OBJS= main.o camera.o logger.o motors.o
 
-E101AVC: main.o camera.o logger.o motors.o
-	g++ -Wall -o E101AVC $(BD)main.o $(BD)camera.o $(BD)logger.o $(BD)motors.o -le101
+OBJS= $(patsubst %,$(ODIR)/%,$(_OBJS))
 
-main.o: $(SD)main.cpp
-	g++ -Wall -c $(SD)main.cpp
+$(ODIR)/%.o: $(SDIR)/%.cpp
+	$(CC) $(CFLAGS) -c $< -o $@ 
 
-camera.o: $(SD)camera.cpp $(SD)camera.h
-	g++ -Wall -c $(SD)camera.cpp
-
-logger.o:$(SD)logger.cpp $(SD)logger.h
-	g++ -Wall -c $(SD)logger.cpp
-
-motors.o: $(SD)motors.cpp $(SD)motors.h
-	g++ -Wall -c $(SD)motors.cpp
+$(OUT): $(OBJS)
+	$(CC) $(CFLAGS) -o $(OUT) $(OBJS) -le101
 
 .PHONY: clean
 clean:
-	rm $(BD)*.o
+	rm -f $(ODIR)/*.o
