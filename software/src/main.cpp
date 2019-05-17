@@ -4,10 +4,13 @@
 #include "logger.h"
 #include "camera.h"
 #include "motors.h"
+#include "pid.h"
 #include "E101.h"
 
 Camera *camera;
 Motors *motors;
+PID *pid;
+
 /**
  * Main entry point for the program
  */
@@ -22,6 +25,7 @@ int main(void) {
 
     camera = new Camera();
     motors = new Motors();
+    pid = new PID(STAGE2_KP, STAGE2_KI, STAGE2_KD); // Uses defined PID gains, can be tuned in PID header
 
     while(true) {
         int lineErr = camera->GetLineError();

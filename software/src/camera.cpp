@@ -7,6 +7,16 @@
  */
 Camera::Camera() {
     logMsg("Camera starting up...", "Camera", INFO);
+    #ifdef DISPLAY_IMAGE
+        open_screen_stream();
+    #endif
+}
+
+Camera::~Camera() {
+    logMsg("Camera shutting down...", "Camera", INFO);
+    #ifdef DISPLAY_IMAGE
+        close_screen_stream();
+    #endif
 }
 
 /**
@@ -21,6 +31,10 @@ int Camera::GetLineError() {
     logMsg("Getting line error.", "Camera", DEBUG);
 
     take_picture();
+
+    #ifdef DISPLAY_IMAGE
+        display_picture();
+    #endif
 
     int middleY = IMAGE_HEIGHT/2; // Get vertical centre of the image
     

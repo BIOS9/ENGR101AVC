@@ -4,6 +4,8 @@
 #define IMAGE_WIDTH 320
 #define IMAGE_HEIGHT 240
 
+//#define DISPLAY_IMAGE // Uncomment this value to display the camera feed on screen
+
 class Camera {
 public:
     Camera(); // Constructor
