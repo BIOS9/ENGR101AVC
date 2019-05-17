@@ -1,4 +1,3 @@
-#include <stdlib.h> 
 #include "camera.h" 
 #include "logger.h"
 #include "E101.h"
@@ -8,8 +7,6 @@
  */
 Camera::Camera() {
     logMsg("Camera starting up...", "Camera", INFO);
-
-    logMsg("Camera started.", "Camera", DEBUG);
 }
 
 /**

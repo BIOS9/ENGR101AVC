@@ -1,10 +1,3 @@
-/**
- * Camera class to handle image capture and processing
- * 
- * Author: Matthew Corfiatis
- * Date: 13/05/2019
- */
-
 #ifndef CAMERA_H // Header guard
 #define CAMERA_H 
 
