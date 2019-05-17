@@ -13,7 +13,8 @@ Motors::Motors() {
 }
 
 Motors::~Motors() {
-    //stop(0); // Stop motors
+    logMsg("Motors shutting down...", "Motors", INFO);
+    StopAll();
 }
 
 void Motors::SetMotorSpeed(Motor motor, int speed) {
@@ -41,12 +42,23 @@ void Motors::UpdateMotors() {
 }
 
 void Motors::StopAll() {
+    logMsg("Stopping left and right motors...", "Motors", DEBUG);
     SetMotorSpeed(LEFT, 0);
     SetMotorSpeed(RIGHT, 0);
     UpdateMotors();
 }
 
 void Motors::Stop(Motor motor) {
+    switch (motor)
+    {
+    case LEFT:
+        logMsg("Stopping left motor...", "Motors", DEBUG);
+        break;
+
+    case RIGHT:
+        logMsg("Stopping right motor...", "Motors", DEBUG);
+        break;
+    }
     SetMotorSpeed(motor, 0);
     UpdateMotors();
 }
