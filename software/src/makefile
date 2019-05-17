@@ -9,3 +9,6 @@ camera.o: camera.cpp camera.h
 
 logger.o: logger.cpp logger.h
 	g++ -Wall -c logger.cpp
+
+clean:
+	rm *.0
