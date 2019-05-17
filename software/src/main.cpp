@@ -2,7 +2,6 @@
 // Then in here just call the class when we detect that the next stage has begun.
 #include "logger.h"
 #include "camera.h"
-#include "network.h"
 
 Camera *camera;
 
