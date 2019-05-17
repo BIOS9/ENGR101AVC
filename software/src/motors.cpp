@@ -28,12 +28,17 @@ void Motors::SetMotorSpeed(Motor motor, int speed) {
 }
 
 int Motors::interpolateMotorSpeed(int value) {
-    return value;
+    if(value > 0)
+        return 65;
+    else if(value < 0)
+        return 30;
+    else
+        return 48;
 }
 
 void Motors::UpdateMotors() {
     logMsg("Updating motors...", "Motors", DEBUG);
-    set_motors(1, 58);
-    set_motors(2, 45);
+    set_motors(1, leftMotorValue);
+    set_motors(5, rightMotorValue);
     hardware_exchange();
 }

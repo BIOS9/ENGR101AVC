@@ -22,9 +22,24 @@ int main(void) {
 
     camera = new Camera();
     motors = new Motors();
-    motors->UpdateMotors();
 
-    sleep1(2000);
+    for(int i = 0; i < 10; ++i) {
+        motors->SetMotorSpeed(LEFT, 100);
+        motors->SetMotorSpeed(RIGHT, 100);
+        motors->UpdateMotors();
+        sleep1(2000);
+
+        motors->SetMotorSpeed(LEFT, 0);
+        motors->SetMotorSpeed(RIGHT, 0);
+        motors->UpdateMotors();
+        sleep1(2000);
+
+        motors->SetMotorSpeed(LEFT, -100);
+        motors->SetMotorSpeed(RIGHT, -100);
+        motors->UpdateMotors();
+        sleep1(2000);
+    }
+
 
     stoph();
     return 0;
