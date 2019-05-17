@@ -17,7 +17,7 @@ float PID::GetOutput(float error) {
                 getDerivative(error);
     
     logMsg("PID output: %f", "PID", DEBUG, val);
-    
+    lastDerivativeClock = 0;
     return val;
 }
 
@@ -43,18 +43,18 @@ float PID::getIntegral(float error) {
 }
 
 float PID::getDerivative(float error) {    
-    float currentClock = static_cast<float>(clock());
+    double currentClock = static_cast<double>(clock());
     
     // If this is the first run, the last clock will be null so skip
-    if(lastDerivativeClock == NULL) {
+    if(lastDerivativeClock == 0) {
         logMsg("PID derivative has no pervious value, skipping...", "PID", DEBUG);
         lastDerivativeClock = currentClock;
         return 0;
     }
 
     // Calculate differences in values since last measurement
-    float timeDiff = currentClock - lastDerivativeClock;
-    float errorDiff = error - lastDerivativeError;
+    double timeDiff = currentClock - lastDerivativeClock;
+    double errorDiff = error - lastDerivativeError;
 
     lastDerivativeError = error;
 
@@ -65,5 +65,5 @@ float PID::getDerivative(float error) {
         return 0;
     }
 
-    return errorDiff / timeDiff;
+    return static_cast<float>(errorDiff / timeDiff);
 }
