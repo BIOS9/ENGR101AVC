@@ -7,7 +7,7 @@ E101AVC: main.o camera.o logger.o motors.o
 main.o: $(SD)main.cpp
 	g++ -Wall -c $(SD)main.cpp
 
-camera.o: $(SD)SD.cpp $(SD)camera.h
+camera.o: $(SD)camera.cpp $(SD)camera.h
 	g++ -Wall -c $(SD)camera.cpp
 
 logger.o:$(SD)logger.cpp $(SD)logger.h
