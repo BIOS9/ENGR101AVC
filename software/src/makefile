@@ -10,5 +10,8 @@ camera.o: camera.cpp camera.h
 logger.o: logger.cpp logger.h
 	g++ -Wall -c logger.cpp
 
+motors.o: motors.cpp motors.h
+	g++ -Wall -c motors.cpp
+
 clean:
 	rm *.0
