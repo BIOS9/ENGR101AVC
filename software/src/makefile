@@ -1,4 +1,4 @@
-E101AVC: main.o camera.o logger.o
+E101AVC: main.o camera.o logger.o motors.o
 	g++ -Wall -o E101AVC main.o camera.o logger.o motors.o -le101
 
 main.o: main.cpp
