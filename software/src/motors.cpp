@@ -28,5 +28,12 @@ void Motors::SetMotorSpeed(Motor motor, int speed) {
 }
 
 int Motors::interpolateMotorSpeed(int value) {
-    return 0;
+    return value;
+}
+
+void Motors::UpdateMotors() {
+    logMsg("Updating motors...", "Motors");
+    set_motors(0, 0x88);
+    set_motors(1, 0x88);
+    hardware_exchange();
 }
