@@ -2,7 +2,7 @@
 #include <stdarg.h>
 #include "logger.h"
 
-const char * LogPrefixes[] = { "DEBUG", "WARNING", "INFO", "ERROR" };
+const char * LogPrefixes[] = { "DEBUG", "INFO", "WARNING", "ERROR" };
 
 /**
  * Logs messages and errors to console.

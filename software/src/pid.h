@@ -3,9 +3,9 @@
 
 
 // PID gain constants for stage 2 (curvy line)
-#define STAGE2_KP 1 // Proportional gain
-#define STAGE2_KI 1 // Integral gain
-#define STAGE2_KD 1 // Derivative gain
+#define STAGE2_KP 0.004 // Proportional gain
+#define STAGE2_KI 0 // Integral gain
+#define STAGE2_KD 0 // Derivative gain
 
 class PID {
 public:

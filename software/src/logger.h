@@ -9,8 +9,8 @@
 
 enum LogLevel {
 	DEBUG = 0,
-	WARNING = 1,
-	INFO = 2,
+	INFO = 1,
+	WARNING = 2,
 	ERROR = 3
 };
 
