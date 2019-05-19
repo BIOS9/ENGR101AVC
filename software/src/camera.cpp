@@ -33,7 +33,7 @@ int Camera::GetLineError() {
     take_picture();
 
     #ifdef DISPLAY_IMAGE
-        display_picture();
+        update_screen();
     #endif
 
     int middleY = IMAGE_HEIGHT/2; // Get vertical centre of the image
