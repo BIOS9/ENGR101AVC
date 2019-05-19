@@ -1,6 +1,6 @@
 // Was thinking we could use a class for each stage?
 // Then in here just call the class when we detect that the next stage has begun.
-#include <stdlib.h> 
+#include <stdlib.h>
 #include "logger.h"
 #include "camera.h"
 #include "motors.h"
@@ -8,12 +8,13 @@
 
 Camera *camera;
 Motors *motors;
+Network *network;
 /**
  * Main entry point for the program
  */
 int main(void) {
     logMsg("Program starting up...", "Main", INFO);
-    
+
     int err = init(0); // Initialise the E101 library
     if(err != 0) {
         logMsg("Failed to initialise E101!", "Main", ERROR);
@@ -22,11 +23,12 @@ int main(void) {
 
     camera = new Camera();
     motors = new Motors();
+    network = new Network((char *)"130.195.6.196", 1024);
 
     while(true) {
         int lineErr = camera->GetLineError();
     }
-    
+
     stoph();
     return 0;
 }
