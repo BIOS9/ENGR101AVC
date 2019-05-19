@@ -29,6 +29,7 @@ int main(void) {
 
     while(true) {
         int lineErr = camera->GetLineError();
+        float pidVal = pid->GetOutput(lineErr);
     }
     
     stoph();
