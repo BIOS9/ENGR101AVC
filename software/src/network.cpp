@@ -23,4 +23,5 @@ void Network::OpenGate(){
   send_to_server(message);//Send message/password back to send_to_server
 
   //gate should open
+  logMsg("Opening Gate.", "Network", DEBUG);
 }
