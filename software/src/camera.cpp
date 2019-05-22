@@ -74,3 +74,63 @@ int Camera::GetLineError() {
     logMsg("Error value calculated as: %d", "Camera", DEBUG, lineError);
     return lineError;
 }
+
+int Camera::findPole () {
+	logMsg("Finding Pole");
+	take_picture();
+	
+	#ifdef DISPLAY_IMAGE
+        update_screen();
+    #endif
+    
+    int middleY = IMAGE_HEIGHT/2; // Get vertical centre of the image
+    int idealRed;
+    int idealGreen;
+    int idealBlue;
+    int redDiff;
+    int greenDiff;
+    int blueDiff;
+    
+        // Find max and min brightness values in the vertical centre of the image
+    for(int i = 0; i < IMAGE_WIDTH; ++i) {
+		//Getting the RGB colours of each pixel
+		int red get_pixel(middleY, i, 0);
+		int green get_pixel(middleY, i, 1);
+		int blue get_pixel(middleY, i, 2);
+		       
+		redDiff = idealRed - red;
+		greenDiff = idealGreen - green;
+		blueDiff = idealBlue - blue;
+		
+		redDiff = redDiff * redDiff;
+		greenDiff = greenDiff * greenDiff;
+		blueDiff = blueDiff * blueDiff;
+		
+		pixel = sqrt(redDiff + greenDiff + blueDiff);
+		
+		       
+        if(pixel > maxBright) 
+            maxBright = pixel;
+
+        if(pixel < minBright)
+            minBright = pixel;
+    }
+    
+    // Threshold value is halfway between the max and min brightness values.
+    int brightThreshold = minBright + (maxBright - minBright) / 2;
+    logMsg("Brightness threshold set at: %d", "Camera", DEBUG, brightThreshold);
+
+    int lineError = 0;
+
+    for(int i = 0; i < IMAGE_WIDTH; ++i) {
+        int pixel = get_pixel(middleY, i, 3);
+        
+        int relativeCentre = i - IMAGE_WIDTH/2; // Gets the relative centre position of the image so that middle is 0
+
+        // Threshold is used so a pixel can be treated as either black or white
+        // This means we can add or subtract error for black pixels only
+        // The amount of error to add or subtract is calculated with the distance from the image centre (relativeCentre)
+        if(pixel < brightThreshold)
+            lineError += relativeCentre;
+    }
+}
