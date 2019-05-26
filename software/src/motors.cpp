@@ -34,6 +34,20 @@ void Motors::SetMotorSpeed(Motor motor, int speed) {
     }
 }
 
+void Motors::StepBack(int milliseconds) {
+    logMsg("Stepping back/reversing...", "Motors", DEBUG);
+    if(milliseconds < 10 || milliseconds > 30000) {
+        logMsg("Invalid reverse duration. Duration must be between 10ms and 30,000ms, given %d", "Motors", WARNING, milliseconds);
+        return;
+    }
+    SetMotorSpeed(LEFT, -REVERSE_SPEED);
+    SetMotorSpeed(RIGHT, -REVERSE_SPEED);
+    UpdateMotors();
+
+    for(int i = 0; i < milliseconds/10; ++i)
+        sleep1(10);
+}
+
 void Motors::UpdateMotors() {
     logMsg("Updating motors...", "Motors", DEBUG);
     set_motors(LEFT_MOTOR_PORT, leftMotorValue);

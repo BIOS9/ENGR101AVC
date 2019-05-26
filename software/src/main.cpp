@@ -30,6 +30,10 @@ int main(void) {
 
     while(true) {
         int lineErr = camera->GetLineError();
+
+        if(!camera->IsLineVisible())
+            motors->StepBack(REVERSE_DURATION);
+
         float pidVal = pid->GetOutput(lineErr);
 
         int leftSpeed = 30;
