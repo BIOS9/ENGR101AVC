@@ -88,5 +88,5 @@ int Camera::GetLineError() {
 }
 
 bool Camera::IsLineVisible() {
-    return IsLineVisible;
+    return lineVisible;
 }
