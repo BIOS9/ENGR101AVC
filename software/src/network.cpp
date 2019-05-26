@@ -14,14 +14,12 @@ void Network::OpenGate(){
 
   connect_to_server(IPAdd, portNumber); // Connect by sending IP adress and port number that we want to connect to
 
-  char= message[24];//To save message
+  char message[24];//To save message
 
-  send_to_server((char)"Please");//Send message to request password/message
+  send_to_server("Please");//Send message to request password/message
 
   receive_from_server(message);//Receive message/password from server
 
   send_to_server(message);//Send message/password back to send_to_server
-
-  //gate should open
-  logMsg("Opening Gate.", "Network", DEBUG);
+  logMsg("Finished opening gate.", "Network", DEBUG);
 }
