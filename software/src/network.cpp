@@ -16,7 +16,7 @@ void Network::OpenGate(){
 
   char message[24];//To save message
 
-  send_to_server("Please");//Send message to request password/message
+  send_to_server((char*)"Please");//Send message to request password/message
 
   receive_from_server(message);//Receive message/password from server
 
