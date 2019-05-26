@@ -1,6 +1,6 @@
 #include "E101.h"
 #include "logger.h"
-#include "network.h" //class
+#include "network.h"
 
 Network::Network(char *ip, int port){
   logMsg("Network loading", "Network", DEBUG);
