@@ -5,11 +5,13 @@
 #include "logger.h"
 #include "camera.h"
 #include "motors.h"
+#include "network.h"
 #include "pid.h"
 #include "E101.h"
 
 Camera *camera;
 Motors *motors;
+Network *network;
 PID *pid;
 
 /**
@@ -27,8 +29,8 @@ int main(void) {
     camera = new Camera();
     motors = new Motors();
     pid = new PID(STAGE2_KP, STAGE2_KI, STAGE2_KD); // Uses defined PID gains, can be tuned in PID header
-    network = new Network((char *)"130.195.6.196", 1024);
-
+    network = new Network("130.195.6.196", 1024);
+    
     while(true) {
         int lineErr = camera->GetLineError();
 
