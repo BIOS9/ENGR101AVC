@@ -17,7 +17,7 @@ PID *pid;
  */
 int main(void) {
     logMsg("Program starting up...", "Main", INFO);
-    
+
     int err = init(0); // Initialise the E101 library
     if(err != 0) {
         logMsg("Failed to initialise E101!", "Main", ERROR);
@@ -27,6 +27,7 @@ int main(void) {
     camera = new Camera();
     motors = new Motors();
     pid = new PID(STAGE2_KP, STAGE2_KI, STAGE2_KD); // Uses defined PID gains, can be tuned in PID header
+    network = new Network((char *)"130.195.6.196", 1024);
 
     while(true) {
         int lineErr = camera->GetLineError();
@@ -48,7 +49,7 @@ int main(void) {
         motors->SetMotorSpeed(RIGHT, rightSpeed);
         motors->UpdateMotors();
     }
-    
+
     stoph();
     return 0;
 }
