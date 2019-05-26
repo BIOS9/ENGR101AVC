@@ -41,17 +41,29 @@ int Camera::GetLineError() {
     // Variables to hold the max and minimum brightness of the pixels in the centre of the image
     int maxBright = -1;
     int minBright = 256;
+    int lineBlackCount = 0;
 
     // Find max and min brightness values in the vertical centre of the image
     for(int i = 0; i < IMAGE_WIDTH; ++i) {
         int pixel = get_pixel(middleY, i, 3);
         
+        if(pixel < MIN_BLACK_COLOR)
+            ++lineBlackCount;
+
         if(pixel > maxBright) 
             maxBright = pixel;
 
         if(pixel < minBright)
             minBright = pixel;
     }
+
+    if(lineBlackCount < LINE_MISSING_THRESHOLD) {
+        logMsg("Line is missing", "Camera", WARNING);
+        lineVisible = false;
+        return 0;
+    }
+
+    lineVisible = true;
 
     // Threshold value is halfway between the max and min brightness values.
     int brightThreshold = minBright + (maxBright - minBright) / 2;
@@ -73,4 +85,8 @@ int Camera::GetLineError() {
 
     logMsg("Error value calculated as: %d", "Camera", DEBUG, lineError);
     return lineError;
+}
+
+bool Camera::IsLineVisible() {
+    return IsLineVisible;
 }
