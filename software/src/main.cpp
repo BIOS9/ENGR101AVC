@@ -47,8 +47,8 @@ int main(void) {
         if(pidVal > 0)
             leftSpeed -= abs(pidVal);
 
-        motors->SetMotorSpeed(LEFT, leftSpeed);
-        motors->SetMotorSpeed(RIGHT, rightSpeed);
+        motors->SetMotorSpeed(LEFT, -leftSpeed);
+        motors->SetMotorSpeed(RIGHT, -rightSpeed);
         motors->UpdateMotors();
     }
 
