@@ -1,8 +1,8 @@
 #ifndef MOTORS_H // Header guard
 #define MOTORS_H
 
-#define REVERSE_DURATION 250;
-#define REVERSE_SPEED 30;
+#define REVERSE_DURATION 250
+#define REVERSE_SPEED 30
 
 enum Motor {
     LEFT,
