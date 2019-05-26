@@ -19,10 +19,12 @@ Motors::~Motors() {
 
 void Motors::SetMotorSpeed(Motor motor, int speed) {
     if(speed > 100 || speed < -100) // Check for invalid speed. Speed must be between -100 and 100
-    {
         logMsg("Invalid motor speed given: \"%d\" speed must be between -100 and 100.", "Motors", WARNING, speed);
-        return;
-    }
+
+    if(speed > 100)
+        speed = 100;
+    if(speed < -100)
+        speed = -100;
 
     if(motor == RIGHT){
         rightMotorValue = interpolateMotorSpeed(speed);
