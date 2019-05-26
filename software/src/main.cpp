@@ -1,6 +1,7 @@
 // Was thinking we could use a class for each stage?
 // Then in here just call the class when we detect that the next stage has begun.
 #include <stdlib.h> 
+#include <math.h>
 #include "logger.h"
 #include "camera.h"
 #include "motors.h"
@@ -30,6 +31,18 @@ int main(void) {
     while(true) {
         int lineErr = camera->GetLineError();
         float pidVal = pid->GetOutput(lineErr);
+
+        int leftSpeed = 30;
+        int rightSpeed = 30;
+
+        if(pidVal < 0)
+            rightSpeed -= abs(pidVal);
+        if(pidVal > 0)
+            leftSpeed -= abs(pidVal);
+
+        motors->SetMotorSpeed(LEFT, leftSpeed);
+        motors->SetMotorSpeed(RIGHT, rightSpeed);
+        motors->UpdateMotors();
     }
     
     stoph();
