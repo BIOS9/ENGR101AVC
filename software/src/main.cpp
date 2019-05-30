@@ -4,6 +4,8 @@
 #include "logger.h"
 #include "camera.h"
 #include "motors.h"
+#include "network.h"
+
 #include "E101.h"
 
 Camera *camera;
@@ -26,7 +28,7 @@ int main(void) {
     network = new Network((char *)"130.195.6.196", 1024);
 
     while(true) {
-        int lineErr = camera->GetLineError();
+      camera->GetLineError();
     }
 
     stoph();
