@@ -3,7 +3,7 @@ ODIR= build
 SDIR= src
 CC= g++
 CFLAGS= -Wall
-_OBJS= main.o camera.o logger.o motors.o
+_OBJS= main.o camera.o logger.o motors.o network.o
 
 OBJS= $(patsubst %,$(ODIR)/%,$(_OBJS))
 

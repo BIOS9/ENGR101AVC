@@ -28,7 +28,7 @@ int main(void) {
     network = new Network((char *)"130.195.6.196", 1024);
 
     while(true) {
-      camera->GetLineError();
+      camera->GetLineError(); //Does not compile when saved an int
     }
 
     stoph();
