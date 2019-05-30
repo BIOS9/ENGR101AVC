@@ -1,18 +1,14 @@
-OUT= E101AVC.a
-ODIR= build
-SDIR= src
-CC= g++
-CFLAGS= -Wall
-_OBJS= main.o camera.o logger.o motors.o network.o
-
-OBJS= $(patsubst %,$(ODIR)/%,$(_OBJS))
-
-$(ODIR)/%.o: $(SDIR)/%.cpp
-	$(CC) $(CFLAGS) -c $< -o $@ 
-
-$(OUT): $(OBJS)
-	$(CC) $(CFLAGS) -o $(OUT) $(OBJS) -le101
-
-.PHONY: clean
+main: main.o logger.o motors.o network.o camera.o 
+	c++ -o main main.o camera.o logger.o motors.o network.o -le101
+main.o: main.cpp
+	c++ -c main.cpp
+logger.o: logger.cpp
+	c++ -c logger.cpp 
+camera.o: camera.cpp
+	c++ -c camera.cpp
+motors.o: motors.cpp
+	c++ -c motors.cpp
+network.o: network.cpp
+	c++ -c network.cpp
 clean:
-	rm -f $(ODIR)/*.o
+	rm *.o
