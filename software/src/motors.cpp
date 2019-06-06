@@ -19,10 +19,12 @@ Motors::~Motors() {
 
 void Motors::SetMotorSpeed(Motor motor, int speed) {
     if(speed > 100 || speed < -100) // Check for invalid speed. Speed must be between -100 and 100
-    {
         logMsg("Invalid motor speed given: \"%d\" speed must be between -100 and 100.", "Motors", WARNING, speed);
-        return;
-    }
+
+    if(speed > 100)
+        speed = 100;
+    if(speed < -100)
+        speed = -100;
 
     if(motor == RIGHT){
         rightMotorValue = interpolateMotorSpeed(speed);
@@ -32,6 +34,20 @@ void Motors::SetMotorSpeed(Motor motor, int speed) {
         leftMotorValue = interpolateMotorSpeed(-speed);
         logMsg("Left motor speed set to: %d (Actual value: %d)", "Motors", DEBUG, speed, leftMotorValue);
     }
+}
+
+void Motors::StepBack(int milliseconds) {
+    logMsg("Stepping back/reversing...", "Motors", DEBUG);
+    if(milliseconds < 10 || milliseconds > 30000) {
+        logMsg("Invalid reverse duration. Duration must be between 10ms and 30,000ms, given %d", "Motors", WARNING, milliseconds);
+        return;
+    }
+    SetMotorSpeed(LEFT, -REVERSE_SPEED);
+    SetMotorSpeed(RIGHT, -REVERSE_SPEED);
+    UpdateMotors();
+
+    for(int i = 0; i < milliseconds/10; ++i)
+        sleep1(10);
 }
 
 void Motors::UpdateMotors() {
