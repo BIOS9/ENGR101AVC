@@ -31,6 +31,8 @@ int main(void) {
     pid = new PID(STAGE2_KP, STAGE2_KI, STAGE2_KD); // Uses defined PID gains, can be tuned in PID header
     network = new Network((char*)"130.195.6.196", 1024);
 
+    network->OpenGate();
+
     while(true) {
         int lineErr = camera->GetLineError();
 
@@ -47,8 +49,8 @@ int main(void) {
         if(pidVal > 0)
             leftSpeed -= abs(pidVal);
 
-        motors->SetMotorSpeed(LEFT, -leftSpeed);
-        motors->SetMotorSpeed(RIGHT, -rightSpeed);
+        motors->SetMotorSpeed(LEFT, leftSpeed);
+        motors->SetMotorSpeed(RIGHT, rightSpeed);
         motors->UpdateMotors();
     }
 

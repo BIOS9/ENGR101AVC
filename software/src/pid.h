@@ -1,17 +1,17 @@
 #ifndef PID_H // Header guard
-#define PID_H 
+#define PID_H
 
 
 // PID gain constants for stage 2 (curvy line)
-#define STAGE2_KP 0.003 // Proportional gain
-#define STAGE2_KI 0.01 // Integral gain
+#define STAGE2_KP 0.008 // Proportional gain
+#define STAGE2_KI 0 // Integral gain
 #define STAGE2_KD 100 // Derivative gain
 
 class PID {
 public:
     PID(float kp, float ki, float kd); // Constructor
     ~PID(); // Destructor
-    
+
     float GetOutput(float error); // Gets PID control output based on error signal
 
 private:
